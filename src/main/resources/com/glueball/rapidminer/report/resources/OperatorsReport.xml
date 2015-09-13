@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<operators name="template" version="6.0" docbundle="com/glueball/rapidminer/report/resources/i18n/OperatorsDocReport">
+    <group key="">
+        <!-- This is an example how to specify Operators and Operator groups. The Operator groups define
+                where Operators will be located in the Operator tree. -->
+
+        <group key="business_report">
+           <operator>
+              <key>glueball_report_freemarker</key>
+              <class>com.glueball.rapidminer.report.FreemarkerStreamWriter</class>
+           </operator>
+        </group>
+    </group>
+</operators>

@@ -1,32 +1,57 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
-
-sourceCompatibility = 1.5
-version = '1.0'
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
-                   'Implementation-Version': version
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.rapidminer.com/content/groups/public/' }
     }
+}
+
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'com.rapidminer.extension' version '0.8.0' 
 }
 
 repositories {
-    mavenCentral()
+    jcenter()
+    maven { url 'https://maven.rapidminer.com/content/groups/public/' }
 }
 
-dependencies {
-    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
-    testCompile group: 'junit', name: 'junit', version: '4.+'
-}
+extensionConfig {
 
-test {
-    systemProperties 'property': 'value'
-}
+    // The extension name
+    name 'BusinessReportExtension'
 
-uploadArchives {
-    repositories {
-       flatDir {
-           dirs 'repos'
-       }
+    /*
+     * The artifact group which will be used when publishing the extensions Jar
+     * and for package customization when initializing the project repository.
+     *
+     * It is 'com.rapidminer.extension' by default.
+     */
+    groupId = 'com.glueball.rapidminer.report'
+
+    /*
+     * The extension vendor which will be displayed in the extensions about box
+     * and for customizing the license headers when initializing the project repository.
+     *
+     * It is 'RapidMiner GmbH' by default.
+     */
+    vendor = "Glueball Ltd."
+
+    /*
+     * The vendor homepage which will be displayed in the extensions about box
+     * and for customizing the license headers when initializing the project repository.
+     *
+     * It is 'www.rapidminer.com' by default.
+     */
+    homepage = "www.glueball.hu"
+
+    // define RapidMiner version and extension dependencies
+    dependencies {
+       rapidminer '6.5.0'
     }
+}
+
+// Define third party library dependencies
+dependencies {
+    //compile 'com.google.guava:guava:18.0'
 }
