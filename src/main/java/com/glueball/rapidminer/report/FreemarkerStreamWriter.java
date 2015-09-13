@@ -22,12 +22,42 @@
  */
 package com.glueball.rapidminer.report;
 
+import java.io.OutputStream;
+
+import com.rapidminer.example.ExampleSet;
+import com.rapidminer.operator.OperatorDescription;
+import com.rapidminer.operator.OperatorException;
+import com.rapidminer.operator.io.AbstractStreamWriter;
+
 /**
  * Freemarker template applyer operator for RapidMiner.
  *
  * @author karesz
  *
  */
-public class FreemarkerStreamWriter {
+public class FreemarkerStreamWriter extends AbstractStreamWriter {
+
+	public FreemarkerStreamWriter(final OperatorDescription description) {
+
+		super(description);
+	}
+
+	@Override
+	protected void writeStream(final ExampleSet exampleSet,
+			final OutputStream outputStream) throws OperatorException {
+
+	}
+
+	@Override
+	protected String getFileParameterName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected String[] getFileExtensions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
