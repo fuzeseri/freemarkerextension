@@ -53,5 +53,6 @@ extensionConfig {
 
 // Define third party library dependencies
 dependencies {
+    compile 'org.freemarker:freemarker:2.3.23'
     //compile 'com.google.guava:guava:18.0'
 }

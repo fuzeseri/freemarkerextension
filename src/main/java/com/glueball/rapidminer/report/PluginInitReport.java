@@ -31,9 +31,9 @@ import com.rapidminer.gui.MainFrame;
  *
  * @author REPLACEME
  */
-public final class PluginInitTemplate {
+public final class PluginInitReport {
 
-	private PluginInitTemplate() {
+	private PluginInitReport() {
 		// Utility class constructor
 	}
 
