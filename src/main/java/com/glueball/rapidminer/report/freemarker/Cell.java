@@ -22,6 +22,7 @@
  */
 package com.glueball.rapidminer.report.freemarker;
 
+import com.glueball.rapidminer.report.format.ValueFormatter;
 import com.glueball.rapidminer.report.freemarker.util.ColumnType;
 import com.rapidminer.example.Attribute;
 import com.rapidminer.example.Example;
@@ -45,7 +46,7 @@ public final class Cell {
 	private final Attribute attr;
 
 	/**
-	 * The report contaxt to use.
+	 * The report context to use.
 	 */
 	private final ReportContext reportContext;
 
@@ -88,34 +89,31 @@ public final class Cell {
 	 */
 	public String getValue() {
 
-		if (Double.isNaN(ex.getValue(attr))
-				|| "?".equals(ex.getValueAsString(attr))) {
-
-			return reportContext.getNullValue();
-		}
-
 		if (attr.isNominal()) {
 
-			return ex.getValueAsString(attr);
+			return ValueFormatter.formatNominal(attr, ex, reportContext);
 		}
+
 		if (attr.isNumerical()) {
 
 			if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(attr.getValueType(),
 					Ontology.REAL)) {
 
-				return String.valueOf(ex.getNumericalValue(attr));
+				return ValueFormatter.formatNumerical(attr, ex, reportContext);
 			}
 			if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(attr.getValueType(),
 					Ontology.INTEGER)) {
 
-				return String.valueOf((long) ex.getNumericalValue(attr));
+				return ValueFormatter.formatLong(attr, ex, reportContext);
 			}
 		}
+
 		if (attr.isDateTime()) {
 
-			return ex.getValueAsString(attr);
+			return ValueFormatter.formatDateTime(attr, ex, reportContext);
 		}
-		return ex.getValueAsString(attr);
+
+		return ValueFormatter.formatNominal(attr, ex, reportContext);
 	}
 
 	/*

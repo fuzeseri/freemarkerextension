@@ -41,8 +41,10 @@ import com.rapidminer.operator.OperatorException;
 import com.rapidminer.operator.UserError;
 import com.rapidminer.operator.io.AbstractStreamWriter;
 import com.rapidminer.parameter.ParameterType;
+import com.rapidminer.parameter.ParameterTypeBoolean;
 import com.rapidminer.parameter.ParameterTypeFile;
 import com.rapidminer.parameter.ParameterTypeString;
+import com.rapidminer.parameter.UndefinedParameterError;
 
 import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.TemplateLoader;
@@ -64,7 +66,7 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 	private static final String FILE_PARAMETER_NAME = "Output file";
 
 	/**
-	 * Most usual outpur formats.
+	 * Most usual output formats.
 	 */
 	private static final String[] FILE_EXTENSIONS = new String[] { "csv",
 			"html", "xml" };
@@ -103,6 +105,31 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 	 * The path of the FreeMarker template.
 	 */
 	private static final String PARAMETER_TEMPLATE_FILE = "Template";
+
+	/**
+	 * The text to replace the null values with in the output.
+	 */
+	private static final String PARAMETER_NULL_VALUE = "Null value";
+
+	/**
+	 * Quote all nominal fields.
+	 */
+	private static final String PARAMETER_QUOTE_NOMINAL = "Quote nominal";
+
+	/**
+	 * Quote all numerical fields.
+	 */
+	private static final String PARAMETER_QUOTE_NUMERICAL = "Quote numerical";
+
+	/**
+	 * Quote all date time fields.
+	 */
+	private static final String PARAMETER_QUOTE_DATETIME = "Quote datetime";
+
+	/**
+	 * Quote string for the nominal fields.
+	 */
+	private static final String PARAMETER_QUOTE = "Quote string";
 
 	/**
 	 * @param description
@@ -214,6 +241,22 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 		params.add(new ParameterTypeFile(PARAMETER_TEMPLATE_FILE,
 				"The freemarker template", false, new String[] { "ftl" }));
 
+		params.add(new ParameterTypeString(PARAMETER_NULL_VALUE,
+				"The value to replace the null values with in the output", "",
+				false));
+
+		params.add(new ParameterTypeBoolean(PARAMETER_QUOTE_NOMINAL,
+				"Quote nominal values", false));
+
+		params.add(new ParameterTypeBoolean(PARAMETER_QUOTE_NUMERICAL,
+				"Quote numerical values", false));
+
+		params.add(new ParameterTypeBoolean(PARAMETER_QUOTE_DATETIME,
+				"Quote datetime values", false));
+
+		params.add(new ParameterTypeString(PARAMETER_QUOTE,
+				"The string to quote the values with", "\"", false));
+
 		return params;
 	}
 
@@ -221,10 +264,29 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 	 * Initialize the report context based on the parameters.
 	 *
 	 * @return the report context.
+	 * @throws UndefinedParameterError
+	 *             if parameter has not defined.
 	 */
-	private final ReportContext getContext() {
+	private final ReportContext getContext() throws UndefinedParameterError {
 
 		final ReportContext context = new ReportContext();
+		context.setNullValue(getParameterAsString(PARAMETER_NULL_VALUE));
+
+		if (getParameterAsBoolean(PARAMETER_QUOTE_NOMINAL)) {
+
+			context.setQuoteNominal(true);
+		}
+
+		if (getParameterAsBoolean(PARAMETER_QUOTE_NUMERICAL)) {
+
+			context.setQuoteNumerical(true);
+		}
+
+		if (getParameterAsBoolean(PARAMETER_QUOTE_DATETIME)) {
+
+			context.setQuoteDateTime(true);
+		}
+		context.setQuoteStr(getParameterAsString(PARAMETER_QUOTE));
 
 		return context;
 	}

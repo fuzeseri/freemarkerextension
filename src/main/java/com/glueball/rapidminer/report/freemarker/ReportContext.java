@@ -62,6 +62,26 @@ public final class ReportContext {
 	private NumberFormat numberFormat = NumberFormat.getInstance();
 
 	/**
+	 * true if the nominal values should be quoted.
+	 */
+	private boolean quoteNominal = false;
+
+	/**
+	 * true if the numerical values should be quoted.
+	 */
+	private boolean quoteNumerical = false;
+
+	/**
+	 * true if the date time values should be quoted.
+	 */
+	private boolean quoteDateTime = false;
+
+	/**
+	 * Quote string for values;
+	 */
+	private String quoteStr = "";
+
+	/**
 	 * @return the dateFormat
 	 */
 	public SimpleDateFormat getDateFormat() {
@@ -112,4 +132,63 @@ public final class ReportContext {
 		this.numberFormat = numberFormat;
 	}
 
+	/**
+	 * @return the quoteNominal
+	 */
+	public final boolean isQuoteNominal() {
+		return quoteNominal;
+	}
+
+	/**
+	 * @param quoteNominal
+	 *            the quoteNominal to set
+	 */
+	public final void setQuoteNominal(boolean quoteNominal) {
+		this.quoteNominal = quoteNominal;
+	}
+
+	/**
+	 * @return the quoteNumerical
+	 */
+	public final boolean isQuoteNumerical() {
+		return quoteNumerical;
+	}
+
+	/**
+	 * @param quoteNumerical
+	 *            the quoteNumerical to set
+	 */
+	public final void setQuoteNumerical(boolean quoteNumerical) {
+		this.quoteNumerical = quoteNumerical;
+	}
+
+	/**
+	 * @return the quoteDateTime
+	 */
+	public final boolean isQuoteDateTime() {
+		return quoteDateTime;
+	}
+
+	/**
+	 * @param quoteDateTime
+	 *            the quoteDateTime to set
+	 */
+	public final void setQuoteDateTime(boolean quoteDateTime) {
+		this.quoteDateTime = quoteDateTime;
+	}
+
+	/**
+	 * @return the quoteStr
+	 */
+	public final String getQuoteStr() {
+		return quoteStr;
+	}
+
+	/**
+	 * @param quoteStr
+	 *            the quoteStr to set
+	 */
+	public final void setQuoteStr(String quoteStr) {
+		this.quoteStr = quoteStr;
+	}
 }
