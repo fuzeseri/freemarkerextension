@@ -22,6 +22,7 @@
  */
 package com.glueball.rapidminer.report;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -32,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.glueball.rapidminer.report.freemarker.ReportColumns;
+import com.glueball.rapidminer.report.freemarker.ReportContext;
 import com.glueball.rapidminer.report.freemarker.ReportRows;
 import com.rapidminer.example.ExampleSet;
 import com.rapidminer.operator.OperatorDescription;
@@ -42,6 +44,8 @@ import com.rapidminer.parameter.ParameterType;
 import com.rapidminer.parameter.ParameterTypeFile;
 import com.rapidminer.parameter.ParameterTypeString;
 
+import freemarker.cache.FileTemplateLoader;
+import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -131,7 +135,9 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 		report.put(REPORT_COLUMNS, ReportColumns.getColumns(exampleSet
 				.getAttributes().allAttributes()));
 
-		report.put(REPORT_ROWS, ReportRows.getRows(exampleSet));
+		final ReportContext context = getContext();
+
+		report.put(REPORT_ROWS, ReportRows.getRows(exampleSet, context));
 
 		report.put(REPORT_TABLE_NAME, reportTableName);
 
@@ -140,6 +146,11 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 			final Configuration configuration = new Configuration(
 					Configuration.VERSION_2_3_23);
 
+			final TemplateLoader templateLoader = new FileTemplateLoader(
+					new File("/home/karesz/tmp"));
+
+			configuration.setTemplateLoader(templateLoader);
+
 			final Template template = configuration
 					.getTemplate(getParameterAsString(PARAMETER_TEMPLATE_FILE));
 
@@ -147,10 +158,12 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 
 		} catch (final IOException e) {
 
+			logError(e.getMessage());
 			throw new UserError(this, e, "Template not found");
 
 		} catch (final TemplateException e) {
 
+			logError(e.getMessage());
 			throw new UserError(this, e, "Template error");
 		}
 	}
@@ -202,5 +215,17 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 				"The freemarker template", false, new String[] { "ftl" }));
 
 		return params;
+	}
+
+	/**
+	 * Initialize the report context based on the parameters.
+	 *
+	 * @return the report context.
+	 */
+	private final ReportContext getContext() {
+
+		final ReportContext context = new ReportContext();
+
+		return context;
 	}
 }

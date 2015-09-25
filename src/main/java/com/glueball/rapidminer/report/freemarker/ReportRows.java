@@ -45,15 +45,18 @@ public final class ReportRows {
 	 *
 	 * @param es
 	 *            the RapidMiner ExampleSet.
+	 * @param context
+	 *            the ReportContext.
 	 * @return the list of rows.
 	 */
-	public static final List<ReportRow> getRows(final ExampleSet es) {
+	public static final List<ReportRow> getRows(final ExampleSet es,
+			final ReportContext context) {
 
 		final List<ReportRow> rows = new ArrayList<ReportRow>();
 
 		for (final Example ex : es) {
 
-			rows.add(new ReportRow(ex));
+			rows.add(new ReportRow(ex, context));
 		}
 		return rows;
 	}

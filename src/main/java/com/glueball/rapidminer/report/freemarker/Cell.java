@@ -25,10 +25,12 @@ package com.glueball.rapidminer.report.freemarker;
 import com.glueball.rapidminer.report.freemarker.util.ColumnType;
 import com.rapidminer.example.Attribute;
 import com.rapidminer.example.Example;
+import com.rapidminer.tools.Ontology;
 
 /**
- * @author karesz
+ * Represents a cell of the report table.
  *
+ * @author karesz
  */
 public final class Cell {
 
@@ -43,17 +45,26 @@ public final class Cell {
 	private final Attribute attr;
 
 	/**
+	 * The report contaxt to use.
+	 */
+	private final ReportContext reportContext;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param example
 	 *            the RapidMiner Example.
 	 * @param attribute
 	 *            the RapidMiner Attribute.
+	 * @param context
+	 *            the report context use.
 	 */
-	public Cell(final Example example, final Attribute attribute) {
+	public Cell(final Example example, final Attribute attribute,
+			final ReportContext context) {
 
 		this.ex = example;
 		this.attr = attribute;
+		this.reportContext = context;
 	}
 
 	/**
@@ -77,7 +88,44 @@ public final class Cell {
 	 */
 	public String getValue() {
 
+		if (Double.isNaN(ex.getValue(attr))
+				|| "?".equals(ex.getValueAsString(attr))) {
+
+			return reportContext.getNullValue();
+		}
+
+		if (attr.isNominal()) {
+
+			return ex.getValueAsString(attr);
+		}
+		if (attr.isNumerical()) {
+
+			if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(attr.getValueType(),
+					Ontology.REAL)) {
+
+				return String.valueOf(ex.getNumericalValue(attr));
+			}
+			if (Ontology.ATTRIBUTE_VALUE_TYPE.isA(attr.getValueType(),
+					Ontology.INTEGER)) {
+
+				return String.valueOf((long) ex.getNumericalValue(attr));
+			}
+		}
+		if (attr.isDateTime()) {
+
+			return ex.getValueAsString(attr);
+		}
 		return ex.getValueAsString(attr);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+
+		return getValue();
+	}
 }

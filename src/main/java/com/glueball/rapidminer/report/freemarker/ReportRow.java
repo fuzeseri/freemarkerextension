@@ -43,14 +43,22 @@ public class ReportRow {
 	private final Example ex;
 
 	/**
+	 * The report context to use.
+	 */
+	private final ReportContext reportContext;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param example
 	 *            the RapidMiner Example.
+	 * @param context
+	 *            the ReportContext.
 	 */
-	public ReportRow(final Example example) {
+	public ReportRow(final Example example, final ReportContext context) {
 
 		this.ex = example;
+		this.reportContext = context;
 	}
 
 	/**
@@ -65,7 +73,7 @@ public class ReportRow {
 
 		while (it.hasNext()) {
 
-			cells.add(new Cell(ex, it.next()));
+			cells.add(new Cell(ex, it.next(), reportContext));
 		}
 		return cells;
 	}
