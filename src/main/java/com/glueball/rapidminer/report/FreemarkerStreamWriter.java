@@ -27,10 +27,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.glueball.rapidminer.report.freemarker.ReportColumns;
 import com.glueball.rapidminer.report.freemarker.ReportContext;
@@ -42,6 +45,7 @@ import com.rapidminer.operator.UserError;
 import com.rapidminer.operator.io.AbstractStreamWriter;
 import com.rapidminer.parameter.ParameterType;
 import com.rapidminer.parameter.ParameterTypeBoolean;
+import com.rapidminer.parameter.ParameterTypeDateFormat;
 import com.rapidminer.parameter.ParameterTypeDirectory;
 import com.rapidminer.parameter.ParameterTypeFile;
 import com.rapidminer.parameter.ParameterTypeString;
@@ -144,6 +148,16 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 	 * Quote string for the nominal fields.
 	 */
 	private static final String PARAMETER_QUOTE = "Quote string";
+
+	/**
+	 * Default date format for the output.
+	 */
+	public static final String PARAMETER_DATE_FORMAT = "Date format";
+
+	/**
+	 * Format numbers by default in the output.
+	 */
+	public static final String PARAMETER_FORMAT_NUMBERS = "Format numbers";
 
 	/**
 	 * @param description
@@ -275,6 +289,12 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 		params.add(new ParameterTypeString(PARAMETER_QUOTE,
 				"The string to quote the values with", "\"", false));
 
+		params.add(new ParameterTypeDateFormat(PARAMETER_DATE_FORMAT,
+				"Default date format in the output", false));
+
+		params.add(new ParameterTypeBoolean(PARAMETER_FORMAT_NUMBERS,
+				"Format numbers by default in the output.", false));
+
 		return params;
 	}
 
@@ -305,6 +325,14 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 			context.setQuoteDateTime(true);
 		}
 		context.setQuoteStr(getParameterAsString(PARAMETER_QUOTE));
+
+		if (!StringUtils.isEmpty(getParameterAsString(PARAMETER_DATE_FORMAT))) {
+
+			context.setDateFormat(new SimpleDateFormat(
+					getParameterAsString(PARAMETER_DATE_FORMAT)));
+		}
+
+		context.setFormatNumbers(getParameterAsBoolean(PARAMETER_FORMAT_NUMBERS));
 
 		return context;
 	}

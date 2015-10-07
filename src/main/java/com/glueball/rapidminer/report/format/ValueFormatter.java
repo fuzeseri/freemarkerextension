@@ -79,8 +79,10 @@ public final class ValueFormatter {
 	public static String formatLong(final Attribute attr, final Example ex,
 			final ReportContext context) {
 
-		String retVal = checkNull(attr, ex) ? context.getNullValue() : context
-				.getNumberFormat().format((long) ex.getNumericalValue(attr));
+		String retVal = checkNull(attr, ex) ? context.getNullValue() : (context
+				.isFormatNumbers() ? context.getNumberFormat().format(
+				(long) ex.getNumericalValue(attr)) : String.valueOf((long) ex
+				.getNumericalValue(attr)));
 
 		if (context.isQuoteNumerical()) {
 
@@ -104,8 +106,9 @@ public final class ValueFormatter {
 	public static String formatNumerical(final Attribute attr,
 			final Example ex, final ReportContext context) {
 
-		String retVal = checkNull(attr, ex) ? context.getNullValue() : context
-				.getNumberFormat().format(ex.getNumericalValue(attr));
+		String retVal = checkNull(attr, ex) ? context.getNullValue() : (context
+				.isFormatNumbers() ? context.getNumberFormat().format(
+				ex.getNumericalValue(attr)) : ex.getValueAsString(attr));
 
 		if (context.isQuoteNumerical()) {
 
@@ -129,8 +132,9 @@ public final class ValueFormatter {
 	public static String formatDateTime(final Attribute attr, final Example ex,
 			final ReportContext context) {
 
-		String retVal = checkNull(attr, ex) ? context.getNullValue() : context
-				.getDateFormat().format(ex.getDateValue(attr));
+		String retVal = checkNull(attr, ex) ? context.getNullValue() : (context
+				.getDateFormat() != null ? context.getDateFormat().format(
+				ex.getDateValue(attr)) : ex.getValueAsString(attr));
 
 		if (context.isQuoteDateTime()) {
 

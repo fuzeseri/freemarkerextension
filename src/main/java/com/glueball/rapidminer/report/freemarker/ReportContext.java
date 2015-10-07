@@ -34,17 +34,18 @@ import java.text.SimpleDateFormat;
  */
 public final class ReportContext {
 
-	/**
-	 * Default date format.
-	 */
-	// todo: it should depend on the localization.
-	private static final String DEFAULT_DATE_FORMAT = "yyyy-mm-dd hh:mm:ss";
+	// /**
+	// * Default date format.
+	// */
+	// // todo: it should depend on the localization.
+	// private static final String DEFAULT_DATE_FORMAT = "yyyy-mm-dd hh:mm:ss";
 
 	/**
 	 * Date formatter instance.
 	 */
-	private SimpleDateFormat dateFormat = new SimpleDateFormat(
-			DEFAULT_DATE_FORMAT);
+	private SimpleDateFormat dateFormat;
+	// = new SimpleDateFormat(
+	// DEFAULT_DATE_FORMAT);
 
 	/**
 	 * Default null value.
@@ -60,6 +61,11 @@ public final class ReportContext {
 	 * Number formatter instance. Initialized by default.
 	 */
 	private NumberFormat numberFormat = NumberFormat.getInstance();
+
+	/**
+	 * Format numbers by default in the output.
+	 */
+	private boolean formatNumbers = false;
 
 	/**
 	 * true if the nominal values should be quoted.
@@ -191,4 +197,20 @@ public final class ReportContext {
 	public final void setQuoteStr(String quoteStr) {
 		this.quoteStr = quoteStr;
 	}
+
+	/**
+	 * @return the formatNumbers
+	 */
+	public final boolean isFormatNumbers() {
+		return formatNumbers;
+	}
+
+	/**
+	 * @param formatNumbers
+	 *            the formatNumbers to set
+	 */
+	public final void setFormatNumbers(boolean formatNumbers) {
+		this.formatNumbers = formatNumbers;
+	}
+
 }
