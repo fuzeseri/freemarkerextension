@@ -42,6 +42,7 @@ import com.rapidminer.operator.UserError;
 import com.rapidminer.operator.io.AbstractStreamWriter;
 import com.rapidminer.parameter.ParameterType;
 import com.rapidminer.parameter.ParameterTypeBoolean;
+import com.rapidminer.parameter.ParameterTypeDirectory;
 import com.rapidminer.parameter.ParameterTypeFile;
 import com.rapidminer.parameter.ParameterTypeString;
 import com.rapidminer.parameter.UndefinedParameterError;
@@ -59,6 +60,9 @@ import freemarker.template.TemplateException;
  *
  */
 public class FreemarkerStreamWriter extends AbstractStreamWriter {
+
+	/** The parameter name for &quot;Implementation of the condition.&quot; */
+	public static final String PARAMETER_CONDITION_CLASS = "condition_class";
 
 	/**
 	 * The name of the output file name parameter.
@@ -102,9 +106,19 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 	private static final String PARAMETER_TABLE_NAME = "Table name";
 
 	/**
-	 * The path of the FreeMarker template.
+	 * The path of the main FreeMarker template file.
 	 */
-	private static final String PARAMETER_TEMPLATE_FILE = "Template";
+	private static final String PARAMETER_TEMPLATE_DIR = "Template dir";
+
+	/**
+	 * The path of the main FreeMarker template file.
+	 */
+	private static final String PARAMETER_TEMPLATE_MAIN = "Main template";
+
+	/**
+	 * The path of the main FreeMarker template file.
+	 */
+	private static final String PARAMETER_TEMPLATE_DEFAULT = "main.ftl";
 
 	/**
 	 * The text to replace the null values with in the output.
@@ -174,12 +188,12 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 					Configuration.VERSION_2_3_23);
 
 			final TemplateLoader templateLoader = new FileTemplateLoader(
-					new File("/home/karesz/tmp"));
+					new File(getParameterAsString(PARAMETER_TEMPLATE_DIR)));
 
 			configuration.setTemplateLoader(templateLoader);
 
 			final Template template = configuration
-					.getTemplate(getParameterAsString(PARAMETER_TEMPLATE_FILE));
+					.getTemplate(getParameterAsString(PARAMETER_TEMPLATE_MAIN));
 
 			template.process(report, writer);
 
@@ -238,8 +252,12 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 		params.add(new ParameterTypeString(PARAMETER_TABLE_NAME,
 				"The name of the report table", false));
 
-		params.add(new ParameterTypeFile(PARAMETER_TEMPLATE_FILE,
-				"The freemarker template", false, new String[] { "ftl" }));
+		params.add(new ParameterTypeDirectory(PARAMETER_TEMPLATE_DIR,
+				"The freemarker template directory", false));
+
+		params.add(new ParameterTypeFile(PARAMETER_TEMPLATE_MAIN,
+				"The freemarker main template file", "ftl",
+				PARAMETER_TEMPLATE_DEFAULT));
 
 		params.add(new ParameterTypeString(PARAMETER_NULL_VALUE,
 				"The value to replace the null values with in the output", "",

@@ -6,7 +6,7 @@
 
         <group key="business_report">
            <operator>
-              <key>glueball_report_freemarker</key>
+              <key>rmx_report_freemarker</key>
               <class>com.glueball.rapidminer.report.FreemarkerStreamWriter</class>
            </operator>
         </group>
