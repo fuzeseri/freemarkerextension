@@ -149,7 +149,7 @@ public final class ReportContext {
 	 * @param quoteNominal
 	 *            the quoteNominal to set
 	 */
-	public final void setQuoteNominal(boolean quoteNominal) {
+	public final void setQuoteNominal(final boolean quoteNominal) {
 		this.quoteNominal = quoteNominal;
 	}
 
@@ -164,7 +164,7 @@ public final class ReportContext {
 	 * @param quoteNumerical
 	 *            the quoteNumerical to set
 	 */
-	public final void setQuoteNumerical(boolean quoteNumerical) {
+	public final void setQuoteNumerical(final boolean quoteNumerical) {
 		this.quoteNumerical = quoteNumerical;
 	}
 
@@ -179,7 +179,7 @@ public final class ReportContext {
 	 * @param quoteDateTime
 	 *            the quoteDateTime to set
 	 */
-	public final void setQuoteDateTime(boolean quoteDateTime) {
+	public final void setQuoteDateTime(final boolean quoteDateTime) {
 		this.quoteDateTime = quoteDateTime;
 	}
 
@@ -194,7 +194,7 @@ public final class ReportContext {
 	 * @param quoteStr
 	 *            the quoteStr to set
 	 */
-	public final void setQuoteStr(String quoteStr) {
+	public final void setQuoteStr(final String quoteStr) {
 		this.quoteStr = quoteStr;
 	}
 
@@ -209,7 +209,7 @@ public final class ReportContext {
 	 * @param formatNumbers
 	 *            the formatNumbers to set
 	 */
-	public final void setFormatNumbers(boolean formatNumbers) {
+	public final void setFormatNumbers(final boolean formatNumbers) {
 		this.formatNumbers = formatNumbers;
 	}
 
