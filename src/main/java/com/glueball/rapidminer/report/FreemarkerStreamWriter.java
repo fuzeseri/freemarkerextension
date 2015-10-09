@@ -47,7 +47,6 @@ import com.rapidminer.parameter.ParameterType;
 import com.rapidminer.parameter.ParameterTypeBoolean;
 import com.rapidminer.parameter.ParameterTypeDateFormat;
 import com.rapidminer.parameter.ParameterTypeDirectory;
-import com.rapidminer.parameter.ParameterTypeFile;
 import com.rapidminer.parameter.ParameterTypeString;
 import com.rapidminer.parameter.UndefinedParameterError;
 
@@ -269,9 +268,15 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 		params.add(new ParameterTypeDirectory(PARAMETER_TEMPLATE_DIR,
 				"The freemarker template directory", false));
 
-		params.add(new ParameterTypeFile(PARAMETER_TEMPLATE_MAIN,
-				"The freemarker main template file", "ftl",
-				PARAMETER_TEMPLATE_DEFAULT));
+		// params.add(new ParameterTypeFile(PARAMETER_TEMPLATE_MAIN,
+		// "The freemarker main template file", "ftl",
+		// PARAMETER_TEMPLATE_DEFAULT));
+
+		final ParameterType paramMainTemplate = new ParameterTypeString(
+				PARAMETER_TEMPLATE_MAIN, "The freemarker main template file",
+				"main.ftl", false);
+
+		params.add(paramMainTemplate);
 
 		params.add(new ParameterTypeString(PARAMETER_NULL_VALUE,
 				"The value to replace the null values with in the output", "",
