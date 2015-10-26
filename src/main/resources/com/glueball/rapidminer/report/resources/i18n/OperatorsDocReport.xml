@@ -5,15 +5,31 @@
     <operator>
       <key>rmx_report_freemarker</key>
       <name>Freemarker Writer</name>
+        <synopsis>
+            <p>Freemarker Writer operator applies a Freemarker www.freemarker.org template
+               on the RapidMiner ExampleSet</p>
+        </synopsis>
+        <help>
+            &lt;p&gt;The operator uses the following mapping on the ExamleSet to make it simpler to use it with the Freemarker&lt;/p&gt;
+
+	        &lt;br&gt;&lt;/br&gt;
+	        &lt;ul&gt;
+			  &lt;li&gt;&lt;p&gt;ExampleSet       -&gt; rows&lt;/p&gt;&lt;/li&gt;
+			  &lt;li&gt;&lt;p&gt;Example          -&gt; row&lt;/p&gt;&lt;/li&gt;
+			  &lt;li&gt;&lt;p&gt;Example values   -&gt; row.cells&lt;/p&gt;&lt;/li&gt;
+			  &lt;li&gt;&lt;p&gt;Attributes       -&gt; columns&lt;/p&gt;&lt;/li&gt;
+			  &lt;li&gt;&lt;p&gt;Attribute        -&gt; column&lt;/p&gt;&lt;/li&gt;
+			  &lt;li&gt;&lt;p&gt;Attribute name   -&gt; column.name&lt;/p&gt;&lt;/li&gt;
+			  &lt;li&gt;&lt;p&gt;Attribute type   -&gt; column.type&lt;/p&gt;&lt;/li&gt;
+			  &lt;li&gt;&lt;p&gt;Attribute value  -&gt; cell.value&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;Attribute type   -&gt; cell.type&lt;/p&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        </help>
     </operator>
 
-
-    <!-- This is how group keys are translated: -->
-
     <group>
-      <key>business_report</key>
-      <name>Business Reports</name>
+      <key>freemarker_report</key>
+      <name>Freemarker Reports</name>
     </group>
-
 
 </operatorHelp>

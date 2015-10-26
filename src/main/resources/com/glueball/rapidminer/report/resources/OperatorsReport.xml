@@ -4,7 +4,7 @@
         <!-- This is an example how to specify Operators and Operator groups. The Operator groups define
                 where Operators will be located in the Operator tree. -->
 
-        <group key="business_report">
+        <group key="freemarker_report">
            <operator>
               <key>rmx_report_freemarker</key>
               <class>com.glueball.rapidminer.report.FreemarkerStreamWriter</class>

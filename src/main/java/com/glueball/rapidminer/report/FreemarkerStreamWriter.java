@@ -268,13 +268,9 @@ public class FreemarkerStreamWriter extends AbstractStreamWriter {
 		params.add(new ParameterTypeDirectory(PARAMETER_TEMPLATE_DIR,
 				"The freemarker template directory", false));
 
-		// params.add(new ParameterTypeFile(PARAMETER_TEMPLATE_MAIN,
-		// "The freemarker main template file", "ftl",
-		// PARAMETER_TEMPLATE_DEFAULT));
-
 		final ParameterType paramMainTemplate = new ParameterTypeString(
 				PARAMETER_TEMPLATE_MAIN, "The freemarker main template file",
-				"main.ftl", false);
+				PARAMETER_TEMPLATE_DEFAULT, false);
 
 		params.add(paramMainTemplate);
 
