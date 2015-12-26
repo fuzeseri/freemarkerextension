@@ -10,7 +10,7 @@
                on the RapidMiner ExampleSet</p>
         </synopsis>
         <help>
-            &lt;p&gt;The operator uses the following mapping on the ExamleSet to make it simpler to use it with the Freemarker&lt;/p&gt;
+            &lt;p&gt;The operator uses the following mapping on the ExamleSet to make it simpler to apply it at a Freemarker&lt;/p&gt;
 
 	        &lt;br&gt;&lt;/br&gt;
 	        &lt;ul&gt;

@@ -54,5 +54,6 @@ extensionConfig {
 // Define third party library dependencies
 dependencies {
     compile 'org.freemarker:freemarker:2.3.23'
+    compile    'org.mockito:mockito-all:1.9.5'
     //compile 'com.google.guava:guava:18.0'
 }

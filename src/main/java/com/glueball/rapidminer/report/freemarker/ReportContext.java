@@ -141,7 +141,8 @@ public final class ReportContext {
 	/**
 	 * @return the quoteNominal
 	 */
-	public final boolean isQuoteNominal() {
+	public boolean isQuoteNominal() {
+
 		return quoteNominal;
 	}
 
@@ -149,14 +150,16 @@ public final class ReportContext {
 	 * @param quoteNominal
 	 *            the quoteNominal to set
 	 */
-	public final void setQuoteNominal(final boolean quoteNominal) {
+	public void setQuoteNominal(final boolean quoteNominal) {
+
 		this.quoteNominal = quoteNominal;
 	}
 
 	/**
 	 * @return the quoteNumerical
 	 */
-	public final boolean isQuoteNumerical() {
+	public boolean isQuoteNumerical() {
+
 		return quoteNumerical;
 	}
 
@@ -164,14 +167,15 @@ public final class ReportContext {
 	 * @param quoteNumerical
 	 *            the quoteNumerical to set
 	 */
-	public final void setQuoteNumerical(final boolean quoteNumerical) {
+	public void setQuoteNumerical(final boolean quoteNumerical) {
+
 		this.quoteNumerical = quoteNumerical;
 	}
 
 	/**
 	 * @return the quoteDateTime
 	 */
-	public final boolean isQuoteDateTime() {
+	public boolean isQuoteDateTime() {
 		return quoteDateTime;
 	}
 
@@ -179,14 +183,16 @@ public final class ReportContext {
 	 * @param quoteDateTime
 	 *            the quoteDateTime to set
 	 */
-	public final void setQuoteDateTime(final boolean quoteDateTime) {
+	public void setQuoteDateTime(final boolean quoteDateTime) {
+
 		this.quoteDateTime = quoteDateTime;
 	}
 
 	/**
 	 * @return the quoteStr
 	 */
-	public final String getQuoteStr() {
+	public String getQuoteStr() {
+
 		return quoteStr;
 	}
 
@@ -194,14 +200,16 @@ public final class ReportContext {
 	 * @param quoteStr
 	 *            the quoteStr to set
 	 */
-	public final void setQuoteStr(final String quoteStr) {
+	public void setQuoteStr(final String quoteStr) {
+
 		this.quoteStr = quoteStr;
 	}
 
 	/**
 	 * @return the formatNumbers
 	 */
-	public final boolean isFormatNumbers() {
+	public boolean isFormatNumbers() {
+
 		return formatNumbers;
 	}
 
@@ -209,7 +217,8 @@ public final class ReportContext {
 	 * @param formatNumbers
 	 *            the formatNumbers to set
 	 */
-	public final void setFormatNumbers(final boolean formatNumbers) {
+	public void setFormatNumbers(final boolean formatNumbers) {
+
 		this.formatNumbers = formatNumbers;
 	}
 

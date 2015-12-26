@@ -22,20 +22,77 @@
  */
 package com.glueball.rapidminer.report.freemarker.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.rapidminer.example.Attribute;
-import com.rapidminer.tools.Ontology;
 
 /**
  * Helper class to map the RapidMiner column types to the Report column types.
  *
  * @author karesz
  */
-public final class ColumnType {
+public final class ReportColumnType {
+
+	/**
+	 * Represents text data.
+	 */
+	public static final String TEXT = "TEXT";
+
+	/**
+	 * Represents floating point numbers.
+	 */
+	public static final String REAL = "REAL";
+
+	/**
+	 * Represents integers.
+	 */
+	public static final String INTEGER = "INTEGER";
+
+	/**
+	 * Represents date.
+	 */
+	public static final String DATE = "DATE";
+
+	/**
+	 * Map to provide the mapping between the RpaidMiner data types and the
+	 * Freemarker operator data types.
+	 */
+	private static final Map<Integer, String> TYPE_MAPPING = new HashMap<Integer, String>();
+
+	static {
+
+		// 0 "attribute_value"
+		// 1 "nominal"
+		// 2 "numeric"
+		// 3 "integer"
+		// 4 "real"
+		// 5 "text"
+		// 6 "binominal"
+		// 7 "polynominal"
+		// 8 "file_path"
+		// 9 "date_time"
+		// 10 "date"
+		// 11 "time"
+
+		TYPE_MAPPING.put(0, TEXT);
+		TYPE_MAPPING.put(1, TEXT);
+		TYPE_MAPPING.put(2, REAL);
+		TYPE_MAPPING.put(3, INTEGER);
+		TYPE_MAPPING.put(4, REAL);
+		TYPE_MAPPING.put(5, TEXT);
+		TYPE_MAPPING.put(6, TEXT);
+		TYPE_MAPPING.put(7, TEXT);
+		TYPE_MAPPING.put(8, TEXT);
+		TYPE_MAPPING.put(9, DATE);
+		TYPE_MAPPING.put(10, DATE);
+		TYPE_MAPPING.put(11, DATE);
+	}
 
 	/**
 	 * Hidden constructor.
 	 */
-	private ColumnType() {
+	private ReportColumnType() {
 	}
 
 	/**
@@ -48,6 +105,6 @@ public final class ColumnType {
 	 */
 	public static String getType(final Attribute attr) {
 
-		return Ontology.VALUE_TYPE_NAMES[attr.getValueType()];
+		return TYPE_MAPPING.get(attr.getValueType());
 	}
 }

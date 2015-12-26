@@ -23,7 +23,7 @@
 package com.glueball.rapidminer.report.freemarker;
 
 import com.glueball.rapidminer.report.format.ValueFormatter;
-import com.glueball.rapidminer.report.freemarker.util.ColumnType;
+import com.glueball.rapidminer.report.freemarker.util.ReportColumnType;
 import com.rapidminer.example.Attribute;
 import com.rapidminer.example.Example;
 import com.rapidminer.tools.Ontology;
@@ -81,7 +81,7 @@ public final class Cell {
 	 */
 	public String getType() {
 
-		return ColumnType.getType(attr);
+		return ReportColumnType.getType(attr);
 	}
 
 	/**
