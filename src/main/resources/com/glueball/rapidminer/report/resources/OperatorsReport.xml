@@ -8,6 +8,7 @@
            <operator>
               <key>rmx_report_freemarker</key>
               <class>com.glueball.rapidminer.report.FreemarkerStreamWriter</class>
+              <icon>freemarker-logo.png</icon>
            </operator>
         </group>
     </group>

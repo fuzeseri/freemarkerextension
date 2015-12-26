@@ -19,7 +19,7 @@ repositories {
 extensionConfig {
 
     // The extension name
-    name 'BusinessReportExtension'
+    name 'report_freemarker'
 
     /*
      * The artifact group which will be used when publishing the extensions Jar

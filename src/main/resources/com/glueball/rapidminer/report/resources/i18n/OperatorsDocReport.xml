@@ -24,6 +24,24 @@
 			  &lt;li&gt;&lt;p&gt;Attribute value  -&gt; cell.value&lt;/p&gt;&lt;/li&gt;
               &lt;li&gt;&lt;p&gt;Attribute type   -&gt; cell.type&lt;/p&gt;&lt;/li&gt;
             &lt;/ul&gt;
+            
+            &lt;p&gt;Column type mappings:&lt;/p&gt;
+
+            &lt;br&gt;&lt;/br&gt;
+            &lt;ul&gt;
+              &lt;li&gt;&lt;p&gt;"nominal"       -&gt; TEXT&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;"numeric"       -&gt; REAL&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;"integer"       -&gt; INTEGER&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;"real"          -&gt; REAL&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;"text"          -&gt; TEXT&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;"binominal"     -&gt; TEXT&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;"polynominal"   -&gt; TEXT&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;"file_path"     -&gt; TEXT&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;"date_time"     -&gt; DATE&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;"date"          -&gt; DATE&lt;/p&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;p&gt;"date"          -&gt; DATE&lt;/p&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+            
         </help>
     </operator>
 
